@@ -1,70 +1,34 @@
-# Distribution ERP System
+# ERP System
 
-A comprehensive ERP (Enterprise Resource Planning) system built for distribution businesses. The system helps manage inventory, suppliers, sales, quotations, and invoicing with GST compliance.
-
-## Tech Stack
-
-- **Frontend:**
-  - Vite.js + React
-  - TypeScript
-  - Tailwind CSS
-  - Framer Motion
-  - React Query
-  - Zustand (State Management)
-
-- **Backend:**
-  - Supabase (PostgreSQL)
-  - Authentication
-  - Row Level Security
-  - Realtime Updates
+A comprehensive Enterprise Resource Planning (ERP) system built with React, TypeScript, and Supabase.
 
 ## Features
 
-- **User Authentication & Role Management**
-  - Secure login/signup using Supabase Auth
-  - Role-based access control
-  - Multi-user support
+- Financial Management
+- Inventory Management
+- Sales Management
+- Purchase Orders
+- Quotation Management
+- Customer Management
+- Supplier Management
+- Reports & Analytics
 
-- **Product & Inventory Management**
-  - Add, update, and categorize products
-  - Real-time stock tracking
-  - Low stock alerts
-  - Warehouse management
+## Tech Stack
 
-- **Supplier Management**
-  - Supplier database
-  - Contact information
-  - Order history
-
-- **Sales & Distribution**
-  - Create and track sales orders
-  - Customer database
-  - Payment tracking
-  - Delivery status monitoring
-
-- **Quotation Management**
-  - Create professional quotations
-  - Convert to invoices
-  - PDF export
-
-- **Invoicing & GST**
-  - GST-compliant invoicing
-  - Automatic tax calculations
-  - Payment tracking
-  - PDF generation
-
-- **Reports & Analytics**
-  - Sales reports
-  - Inventory reports
-  - Financial statements
-  - Performance analytics
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Supabase
+- React Router
+- HeadlessUI
+- React Icons
 
 ## Getting Started
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd erp
+   git clone https://github.com/Blackboytechie/erp.git
    ```
 
 2. Install dependencies:
@@ -72,52 +36,25 @@ A comprehensive ERP (Enterprise Resource Planning) system built for distribution
    npm install
    ```
 
-3. Create a `.env` file in the root directory and add your Supabase credentials:
-   ```env
-   VITE_SUPABASE_URL=your-supabase-project-url
-   VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-   ```
+3. Set up environment variables:
+   - Copy `.env.example` to `.env`
+   - Update the variables with your Supabase credentials
 
-4. Initialize the database:
-   - Create a new Supabase project
-   - Run the SQL commands from `schema.sql` in the Supabase SQL editor
-
-5. Start the development server:
+4. Start the development server:
    ```bash
    npm run dev
    ```
 
 ## Project Structure
 
-```
-src/
-├── components/        # Reusable UI components
-├── pages/            # Page components
-├── layouts/          # Layout components
-├── hooks/            # Custom React hooks
-├── utils/            # Utility functions
-├── services/         # API services
-├── store/            # State management
-├── types/            # TypeScript types
-├── assets/           # Static assets
-└── styles/           # Global styles
-```
-
-## Database Schema
-
-The system uses the following main tables:
-
-- `products`: Product information and stock levels
-- `suppliers`: Supplier details and contact information
-- `sales`: Sales order information
-- `sale_items`: Individual items in sales orders
-- `purchase_orders`: Purchase orders to suppliers
-- `purchase_order_items`: Items in purchase orders
-- `quotations`: Customer quotations
-- `quotation_items`: Items in quotations
-- `invoices`: Customer invoices
-- `invoice_items`: Items in invoices
-- `payments`: Payment records
+- `/src` - Source code
+  - `/components` - React components
+  - `/pages` - Page components
+  - `/utils` - Utility functions
+  - `/types` - TypeScript type definitions
+  - `/config` - Configuration files
+  - `/contexts` - React contexts
+  - `/hooks` - Custom hooks
 
 ## Contributing
 
@@ -130,3 +67,4 @@ The system uses the following main tables:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
