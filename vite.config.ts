@@ -3,29 +3,62 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+      babel: {
+        plugins: [
+          ['@babel/plugin-transform-react-jsx', { runtime: 'automatic' }]
+        ]
+      }
+    })
+  ],
   server: {
     port: 5173,
+    watch: {
+      usePolling: true
+    }
   },
   build: {
     outDir: 'dist',
     sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-        },
-      },
-    },
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('chart.js')) {
+              return 'chart'
+            }
+            if (id.includes('react')) {
+              return 'react'
+            }
+            return 'vendor'
+          }
+        }
+      }
+    }
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
   },
   optimizeDeps: {
-    include: ['react', 'react-dom']
+    include: [
+      'react', 
+      'react-dom', 
+      'react-router-dom', 
+      '@supabase/supabase-js',
+      'chart.js',
+      'react-chartjs-2'
+    ],
+    esbuildOptions: {
+      target: 'es2020'
+    }
   },
-  base: '/'
+  base: '/',
+  esbuild: {
+    target: 'es2020'
+  }
 })

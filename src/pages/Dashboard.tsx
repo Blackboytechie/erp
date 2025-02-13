@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../config/supabaseClient';
 import { IoTrendingUp, IoCart, IoWarning, IoWallet, IoBarChart, IoStorefront } from 'react-icons/io5';
 import { Line } from 'react-chartjs-2';

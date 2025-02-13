@@ -23,29 +23,30 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!email || !password) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+    
     setLoading(true);
-
     try {
-      if (isSignUp) {
-        const success = await signup(email, password);
-        if (success) {
-          toast.success('Account created successfully! Please sign in.');
-          setIsSignUp(false);
-        } else {
-          throw new Error('Signup failed');
-        }
-      } else {
-        const success = await login(email, password);
-        if (success) {
-          toast.success('Logged in successfully');
+      const authFunction = isSignUp ? signup : login;
+      const success = await authFunction(email, password);
+      
+      if (success) {
+        toast.success(isSignUp ? 'Account created successfully!' : 'Logged in successfully');
+        if (!isSignUp) {
           navigate(from, { replace: true });
         } else {
-          throw new Error('Login failed');
+          setIsSignUp(false);
         }
+      } else {
+        toast.error(isSignUp ? 'Failed to create account' : 'Failed to log in');
       }
     } catch (error) {
       console.error('Auth error:', error);
-      toast.error(isSignUp ? 'Failed to create account' : 'Failed to log in');
+      const errorMessage = error instanceof Error ? error.message : 'Authentication failed';
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
