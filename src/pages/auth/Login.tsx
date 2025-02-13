@@ -10,7 +10,7 @@ export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { signIn, signUp } = useAuth();
+  const { login, signup } = useAuth();
 
   const from = location.state?.from?.pathname || '/dashboard';
 
@@ -27,13 +27,21 @@ export default function Login() {
 
     try {
       if (isSignUp) {
-        await signUp(email, password);
-        toast.success('Account created successfully! Please sign in.');
-        setIsSignUp(false);
+        const success = await signup(email, password);
+        if (success) {
+          toast.success('Account created successfully! Please sign in.');
+          setIsSignUp(false);
+        } else {
+          throw new Error('Signup failed');
+        }
       } else {
-        await signIn(email, password);
-        toast.success('Logged in successfully');
-        navigate(from, { replace: true });
+        const success = await login(email, password);
+        if (success) {
+          toast.success('Logged in successfully');
+          navigate(from, { replace: true });
+        } else {
+          throw new Error('Login failed');
+        }
       }
     } catch (error) {
       console.error('Auth error:', error);
