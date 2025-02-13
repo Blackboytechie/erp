@@ -4,6 +4,7 @@ import { IoAdd, IoPencil, IoTrash, IoSearch, IoCash } from 'react-icons/io5';
 import toast from 'react-hot-toast';
 import InvoiceModal from '@/components/finance/InvoiceModal';
 import InvoicePaymentModal from '@/components/finance/InvoicePaymentModal';
+import { Invoice } from '@/types/index';
 
 interface PaymentStats {
   payment_method: string;
@@ -11,7 +12,7 @@ interface PaymentStats {
   total_amount: number;
 }
 
-import { Invoice } from '@/types/types';
+
 
 
 export default function Invoices() {
